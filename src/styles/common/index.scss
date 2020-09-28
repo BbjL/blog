@@ -1,0 +1,13 @@
+// 公用文件（包含工具class和基础变量）
+$skinBgColor: #fff;
+$skinFontColor: rgba(0,0,0,.65);
+
+.clearfix {
+  *zoom: 1;
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}

@@ -1,0 +1,5 @@
+// 混入样式（包括mixins.scss, utils.scss等）
+@mixin padding-lr($width: 15px) {
+  padding-right: $width;
+  padding-left: $width;
+}
