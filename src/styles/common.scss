@@ -1,0 +1,49 @@
+// 公用文件（包含工具class和基础变量）
+@import './themes/light.scss';
+
+$skinFontColor: rgba(0,0,0,.65);   // 总体字体颜色
+$iconColor: #8e8e8e;      // 图标主要颜色
+
+// 清楚浮动
+.clearfix {
+  *zoom: 1;
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+// 分割线
+.splite-line {
+  border-bottom: 1px double rgba(0,0,0,.1);
+}
+
+// 下一页按钮
+.next-btn {
+  display: block;
+  width: 100%;
+  height: 38px;
+  color: $skinFontColor;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    color: $activeColor;
+    border-color: $activeColor;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+// 隐藏头像
+@media (max-width: 768px) {
+  .hide-avatar {
+    display: none;
+  }
+}

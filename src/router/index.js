@@ -6,47 +6,103 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/blog',
     hidden: true,
   },
   {
-    path: '/home',
-    name: 'home',
+    path: '/blog',
+    name: 'blog',
+    component: () => import('@/layout/index'),
+    redirect: '/blog/articles/all',
+    meta: {
+      title: '博客',
+      id: 'articles',
+      icon: 'icon-pen',
+    },
+    children: [
+      {
+        path: 'articles/:category',
+        name: 'articles',
+        component: () => import('@/views/articles/index'),
+      },
+    ],
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: () => import('@/layout/index'),
     hidden: true,
-    component: () => import('@/views/home/index'),
-    meta: {
-      title: '首页', id: 'home', lightColor: '#bfa', darkColor: '#bbb', icon: '',
-    },
+    redirect: '/detail/all',
+    children: [
+      {
+        path: 'all',
+        name: 'all',
+        component: () => import('@/views/detail/detail'),
+      },
+    ],
   },
   {
-    path: '/articles',
-    name: 'articles',
-    component: () => import('@/views/articles/index'),
+    path: '/guestbook',
+    name: 'guestbook',
+    component: () => import('@/layout/index'),
+    redirect: '/guestbook/all',
     meta: {
-      title: '博客', id: 'articles', lightColor: '#c734ff', darkColor: '#bbb', icon: 'pen-nib',
+      title: '留言',
+      id: 'message',
+      icon: 'icon-message_1',
     },
-  },
-  {
-    path: '/message',
-    name: 'message',
-    component: () => import('@/views/message/index'),
-    meta: {
-      title: '留言', id: 'message', lightColor: '#ffeb4b', darkColor: '#bbb', icon: 'comment-dots',
-    },
+    children: [
+      {
+        path: 'all',
+        name: 'all',
+        component: () => import('@/views/guestbook/index'),
+      },
+    ],
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import('@/views/about/index'),
+    component: () => import('@/layout/index'),
+    redirect: '/about/profile',
     meta: {
-      title: '关于', id: 'about', lightColor: '#37dcff', darkColor: '#bbb', icon: 'user',
+      title: '关于',
+      id: 'about',
+      icon: 'icon-user-copy',
     },
+    children: [
+      {
+        path: 'profile',
+        name: 'profile',
+        component: () => import('@/views/about/index'),
+      },
+    ],
+  },
+  {
+    // 会匹配所有路径
+    path: '*',
+    name: '404',
+    hidden: true,
+    redirect: './404/all',
+    component: () => import('@/layout/index'),
+    children: [
+      {
+        path: 'all',
+        name: 'all',
+        component: () => import('@/views/404/404'),
+      },
+    ],
   },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes,
+});
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  // console.log(to, from);
+  next();
 });
 
 export default router;

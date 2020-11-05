@@ -1,3 +1,5 @@
-$skinBgColor: #f3f3f4;
-$skinFontColor: rgba(0,0,0,.65);
-$skinHColor: rgba(0,0,0,.85)
+$theme: #fff;
+$skinBgColor: #f3f3f4;      // body皮肤颜色
+$activeColor: #40a9ff;      // 点击或者hover颜色
+$mouseSelectColor: #ffbd2e; // 选中文字背景颜色
+$profileBg: linear-gradient(-90deg, #00bcd4, #1890ff);

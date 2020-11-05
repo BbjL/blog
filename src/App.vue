@@ -1,25 +1,26 @@
 <template>
   <div id="app">
-    <layout></layout>
+    <!-- ant 组件国际化 -->
+    <a-config-provider :locale="chinese">
+      <router-view></router-view>
+    </a-config-provider>
   </div>
 </template>
 
 <script>
-import layout from '@/layout/index.vue';
+import chinese from 'ant-design-vue/lib/locale-provider/zh_CN';
 
 export default {
   name: 'app',
-  components: { layout },
   data() {
     return {
-      color1: '#409EFF',
-      color2: null,
+      chinese,
+      percent: 0,
     };
   },
-
 };
 </script>
 
 <style lang="scss">
-  @import "styles/main";
+@import "@/styles/main.scss";
 </style>
